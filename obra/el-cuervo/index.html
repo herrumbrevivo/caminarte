@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#2C1A0E">
+  <title>El Cuervo · Mirador de Las Indias · Herrumbre Vivo</title>
+  <meta name="description" content="El Cuervo, obra de Herrumbre Vivo instalada en el Mirador de Las Indias, Fuencaliente de La Palma. Arte, paisaje, viticultura y memoria local.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --marron:#2C1A0E;
+      --marron-oscuro:#1C1008;
+      --dorado:#C8A84B;
+      --arena:#D4B96A;
+      --crema:#FAF6F0;
+      --gris:#7A6A5A;
+      --granate:#8B1A1A;
+      --texto:#25211d;
+      --blanco:#fff;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{
+      min-height:100vh;
+      background:#eee9e2;
+      color:var(--texto);
+      font-family:'DM Sans',sans-serif;
+    }
+    .page{
+      min-height:100vh;
+      background:var(--crema);
+      max-width:480px;
+      margin:0 auto;
+      box-shadow:0 0 24px rgba(0,0,0,.08);
+    }
+    header{
+      background:var(--marron);
+      padding:10px 18px;
+      display:flex;
+      align-items:center;
+      gap:8px;
+      position:sticky;
+      top:0;
+      z-index:50;
+      border-bottom:3px solid var(--dorado);
+    }
+    .header-title{
+      flex:1;
+      font-family:'Playfair Display',serif;
+      font-size:13px;
+      color:var(--arena);
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+    }
+    .header-brand{
+      font-size:9px;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+      color:var(--dorado);
+      font-weight:600;
+      flex-shrink:0;
+    }
+    .hero{
+      position:relative;
+      height:60vh;
+      min-height:360px;
+      overflow:hidden;
+      background:#18130f;
+    }
+    .hero img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+    }
+    .hero-gradient{
+      position:absolute;
+      inset:auto 0 0;
+      height:62%;
+      background:linear-gradient(to top,rgba(20,10,5,.96),transparent);
+      pointer-events:none;
+    }
+    .hero-copy{
+      position:absolute;
+      left:0; right:0; bottom:0;
+      padding:26px 22px 22px;
+    }
+    .eyebrow{
+      display:inline-block;
+      padding:4px 9px;
+      border:1px solid rgba(212,185,106,.35);
+      background:rgba(44,26,14,.5);
+      color:var(--arena);
+      font-size:9px;
+      letter-spacing:.13em;
+      text-transform:uppercase;
+      border-radius:4px;
+      margin-bottom:9px;
+      backdrop-filter:blur(4px);
+    }
+    .hero h1{
+      font-family:'Playfair Display',serif;
+      font-size:2.45rem;
+      color:#fff;
+      line-height:1.04;
+      margin-bottom:6px;
+      font-weight:400;
+    }
+    .hero-subtitle{
+      font-size:12px;
+      color:var(--arena);
+      font-weight:300;
+    }
+    .lang-bar{
+      background:var(--marron);
+      padding:12px 18px;
+      display:flex;
+      gap:7px;
+      overflow-x:auto;
+      border-top:1px solid rgba(212,185,106,.15);
+      scrollbar-width:none;
+      position:sticky;
+      top:39px;
+      z-index:40;
+    }
+    .lang-bar::-webkit-scrollbar{display:none}
+    .lang-btn{
+      flex-shrink:0;
+      padding:6px 15px;
+      border-radius:20px;
+      border:1px solid rgba(212,185,106,.25);
+      background:transparent;
+      color:var(--arena);
+      font-family:'DM Sans',sans-serif;
+      font-size:12px;
+      cursor:pointer;
+      transition:.15s ease;
+    }
+    .lang-btn.active{
+      background:var(--dorado);
+      border-color:var(--dorado);
+      color:#1a1a1a;
+    }
+    .section{
+      padding:25px 22px;
+      border-bottom:1px solid rgba(120,100,80,.13);
+    }
+    .section.tint{background:rgba(44,26,14,.035)}
+    .section-label{
+      display:flex;
+      align-items:center;
+      gap:7px;
+      font-size:9px;
+      letter-spacing:.14em;
+      text-transform:uppercase;
+      color:var(--gris);
+      margin-bottom:12px;
+    }
+    .section-label::before{
+      content:"";
+      width:16px;
+      height:1px;
+      background:var(--dorado);
+      display:block;
+    }
+    .description{
+      font-size:14.5px;
+      line-height:1.74;
+      color:#2a2a2a;
+      font-weight:300;
+    }
+    .description p+p{margin-top:13px}
+
+    .gallery-image{
+      width:100%;
+      display:block;
+      border-radius:10px;
+      border:1px solid rgba(120,100,80,.16);
+      background:#fff;
+      overflow:hidden;
+    }
+    .gallery-image img{
+      width:100%;
+      height:auto;
+      display:block;
+      object-fit:cover;
+    }
+    .gallery-caption{
+      font-size:12px;
+      color:var(--gris);
+      margin-top:9px;
+    }
+    .location{
+      font-size:13.5px;
+      color:var(--gris);
+      margin-bottom:13px;
+    }
+    .map{
+      width:100%;
+      height:200px;
+      border:0;
+      border-radius:8px;
+      margin:13px 0;
+      display:block;
+    }
+    .maps-btn{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      width:100%;
+      padding:13px;
+      background:var(--granate);
+      color:#fff;
+      border-radius:8px;
+      text-decoration:none;
+      font-size:14px;
+      font-weight:500;
+      transition:.15s ease;
+    }
+    .maps-btn:hover{background:#6B1212}
+    .poi-list{
+      display:flex;
+      flex-direction:column;
+      gap:9px;
+      margin-top:4px;
+    }
+    .poi-card{
+      display:flex;
+      align-items:center;
+      padding:13px 15px;
+      border:1px solid rgba(120,100,80,.2);
+      border-radius:10px;
+      gap:11px;
+      text-decoration:none;
+      color:inherit;
+      background:#fff;
+      transition:.15s ease;
+    }
+    .poi-card:hover{
+      border-color:var(--dorado);
+      background:rgba(200,168,75,.06);
+    }
+    .poi-info{flex:1}
+    .poi-name{
+      font-size:13.5px;
+      font-weight:500;
+      margin-bottom:2px;
+    }
+    .poi-cat{
+      font-size:11.5px;
+      color:var(--gris);
+    }
+    .poi-dist{
+      font-size:12px;
+      color:var(--gris);
+      white-space:nowrap;
+    }
+    .artist-head{
+      display:flex;
+      align-items:center;
+      gap:14px;
+      margin-bottom:16px;
+    }
+    .artist-photo{
+      width:72px;
+      height:72px;
+      border-radius:50%;
+      overflow:hidden;
+      flex-shrink:0;
+      background:var(--marron);
+      border:2px solid rgba(200,168,75,.4);
+    }
+    .artist-photo img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+    }
+    .artist-name{
+      font-family:'Playfair Display',serif;
+      font-size:16px;
+      margin-bottom:3px;
+    }
+    .artist-role{
+      font-size:11px;
+      color:var(--gris);
+      line-height:1.5;
+    }
+    .source-link{
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
+      margin-top:14px;
+      font-size:11.5px;
+      color:#6d5831;
+      text-decoration:none;
+      border-bottom:1px solid rgba(109,88,49,.35);
+    }
+    .source-link:hover{color:var(--marron)}
+    footer{
+      background:var(--marron-oscuro);
+      padding:25px 22px;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      gap:9px;
+      border-top:3px solid var(--dorado);
+      text-align:center;
+    }
+    .footer-brand{
+      font-family:'Playfair Display',serif;
+      font-size:20px;
+      color:var(--arena);
+      text-decoration:none;
+    }
+    .footer-small{
+      color:rgba(212,185,106,.58);
+      font-size:10px;
+      line-height:1.5;
+    }
+    .lang-panel{display:none}
+    .lang-panel.active{display:block}
+    @media(min-width:600px){
+      .page{max-width:900px}
+      .hero{height:55vh;min-height:440px}
+      .hero h1{font-size:3.2rem}
+      header{padding:12px 28px}
+      .section{padding:30px 32px}
+      .lang-bar{padding:14px 28px;top:43px}
+      .map{height:280px}
+      .poi-list{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+    }
+    @media(min-width:1024px){
+      .page{max-width:1100px}
+      .poi-list{grid-template-columns:repeat(3,1fr)}
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <header>
+    <div class="header-title">El Cuervo · Mirador de Las Indias</div>
+    <div class="header-brand">Herrumbre Vivo</div>
+  </header>
+
+  <div class="hero">
+    <img src="../../img/el-cuervo.jpg" alt="El Cuervo, obra de Herrumbre Vivo en el Mirador de Las Indias">
+    <div class="hero-gradient"></div>
+    <div class="hero-copy">
+      <div class="eyebrow">Herrumbre Vivo · Fuencaliente</div>
+      <h1>El Cuervo</h1>
+      <p class="hero-subtitle">Mirador de Las Indias · La Fajana · 2026</p>
+    </div>
+  </div>
+
+  <div class="lang-bar">
+    <button class="lang-btn active" data-lang="es">Español</button>
+    <button class="lang-btn" data-lang="en">English</button>
+    <button class="lang-btn" data-lang="de">Deutsch</button>
+    <button class="lang-btn" data-lang="fr">Français</button>
+  </div>
+
+  <!-- ESPAÑOL -->
+  <main class="lang-panel active" id="lang-es">
+    <section class="section">
+      <div class="section-label">Sobre la obra</div>
+      <div class="description">
+        <p>En el Mirador de Las Indias, sobre los barrios de Las Indias y La Fajana, <strong>El Cuervo</strong> conecta el paisaje con la memoria agrícola de Fuencaliente. La obra de Gustavo Díaz, Herrumbre Vivo, incorpora tijeras de poda, cepas de vid y elementos de labranza para hablar de la viticultura, del trabajo de la tierra y de los conocimientos transmitidos de generación en generación.</p>
+        <p>La figura del ave dirige la mirada hacia el territorio y refuerza la relación entre naturaleza y actividad humana. El metal recuperado deja visible su procedencia y su desgaste: herramientas que antes servían para trabajar el campo pasan a formar parte de una pieza que conserva su memoria.</p>
+        <p>La instalación se integra así en un lugar desde el que pueden leerse varias capas de Fuencaliente a la vez: paisaje volcánico, agricultura, costa, tradición y creación contemporánea.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-label">Imagen de la obra</div>
+      <div class="gallery-image">
+        <img src="../../img/el-cuervo.jpg" alt="El Cuervo, obra de Herrumbre Vivo en el Mirador de Las Indias">
+      </div>
+      <p class="gallery-caption">Vista de la obra instalada en el Mirador de Las Indias.</p>
+    </section>
+
+    <section class="section tint">
+      <div class="section-label">El Mirador de Las Indias</div>
+      <div class="description">
+        <p>El mirador fue inaugurado el <strong>7 de agosto de 2026</strong> como un nuevo espacio paisajístico y cultural del municipio. Desde su posición elevada ofrece vistas hacia el litoral, las plataneras, el sur de La Palma y, cuando las condiciones lo permiten, la isla de El Hierro.</p>
+        <p>El espacio fue concebido para unir contemplación del paisaje y cultura. Junto a la escultura de Gustavo Díaz incorpora una décima de <strong>Miguel Martín Méndez</strong>, natural del barrio de Las Indias, haciendo convivir en un mismo punto naturaleza, arte y literatura.</p>
+      </div>
+      <a class="source-link" href="https://fuencalientedelapalma.es/2026/08/07/fuencaliente-inaugura-el-nuevo-mirador-de-las-indias-un-nuevo-referente-paisajistico-y-cultural/" target="_blank" rel="noopener noreferrer">Información institucional sobre la inauguración ↗</a>
+    </section>
+
+    <section class="section">
+      <div class="section-label">Ubicación</div>
+      <p class="location">Mirador de Las Indias, Barrio de La Fajana · Fuencaliente de La Palma</p>
+      <iframe class="map" src="https://www.openstreetmap.org/export/embed.html?bbox=-17.8602%2C28.4954%2C-17.8476%2C28.5033&layer=mapnik&marker=28.499342%2C-17.8538954" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      <a class="maps-btn" href="https://www.google.com/maps?q=28.499342,-17.8538954" target="_blank" rel="noopener noreferrer">⌖ Abrir en Google Maps</a>
+    </section>
+
+    <section class="section">
+      <div class="section-label">Puntos de interés cercanos</div>
+      <div class="poi-list">
+        <a class="poi-card" href="https://www.google.com/maps/search/Bodegas+Teneguia+Fuencaliente" target="_blank" rel="noopener noreferrer">
+          <div class="poi-info"><div class="poi-name">Bodegas Teneguía</div><div class="poi-cat">Enoturismo · Fuencaliente</div></div><span class="poi-dist">1,2 km</span>
+        </a>
+        <a class="poi-card" href="https://turismofuencalientedelapalma.com/fuencaliente/centro-volcan-san-antonio/" target="_blank" rel="noopener noreferrer">
+          <div class="poi-info"><div class="poi-name">Volcán de San Antonio</div><div class="poi-cat">Paisaje volcánico · Centro de visitantes</div></div><span class="poi-dist">2 km</span>
+        </a>
+        <a class="poi-card" href="https://turismofuencalientedelapalma.com/fuencaliente/faro-de-fuencaliente/" target="_blank" rel="noopener noreferrer">
+          <div class="poi-info"><div class="poi-name">Faro de Fuencaliente</div><div class="poi-cat">Patrimonio · Costa</div></div><span class="poi-dist">4,5 km</span>
+        </a>
+      </div>
+    </section>
+
+    <section class="section tint">
+      <div class="section-label">El artista</div>
+      <div class="artist-head">
+        <div class="artist-photo"><img src="../../img/gustavo.jpg" alt="Gustavo Díaz"></div>
+        <div>
+          <div class="artist-name">Gustavo Díaz</div>
+          <div class="artist-role">Artista del reciclado · Activista medioambiental · Gestor de residuos</div>
+        </div>
+      </div>
+      <div class="description">
+        <p>Natural de Fuencaliente, La Palma, Gustavo Díaz desarrolla bajo la marca Herrumbre Vivo proyectos que combinan arte, sostenibilidad, identidad cultural y participación ciudadana. Transforma materiales en desuso en esculturas e instalaciones que ponen en valor las tradiciones y el patrimonio de Canarias.</p>
+        <p>Su trabajo parte de la reutilización de objetos y herramientas que conservan huellas de los oficios para los que fueron creados, incorporando esas historias al significado final de cada pieza.</p>
+      </div>
+    </section>
+  </main>
+
+  <!-- ENGLISH -->
+  <main class="lang-panel" id="lang-en">
+    <section class="section">
+      <div class="section-label">About the artwork</div>
+      <div class="description">
+        <p>At the Las Indias viewpoint, above the neighbourhoods of Las Indias and La Fajana, <strong>El Cuervo</strong> connects the landscape with Fuencaliente's agricultural memory. Gustavo Díaz, working as Herrumbre Vivo, uses pruning shears, vine wood and farming tools to evoke viticulture, work on the land and knowledge passed from one generation to the next.</p>
+        <p>The bird figure directs the visitor's gaze towards the territory and strengthens the relationship between nature and human activity. Recovered metal keeps the traces of its previous use visible: tools once used in the fields now become part of an artwork that preserves their memory.</p>
+        <p>The installation therefore brings together several layers of Fuencaliente in one place: volcanic landscape, agriculture, coast, tradition and contemporary creation.</p>
+      </div>
+    </section>
+    <section class="section tint">
+      <div class="section-label">Las Indias viewpoint</div>
+      <div class="description">
+        <p>The viewpoint was inaugurated on <strong>7 August 2026</strong> as a new scenic and cultural space in Fuencaliente. From its elevated position it overlooks the coast, banana plantations and the south of La Palma, with El Hierro visible when conditions allow.</p>
+        <p>The site was designed to combine landscape and culture. Alongside Gustavo Díaz's sculpture, it features a décima by <strong>Miguel Martín Méndez</strong>, who was born in the Las Indias neighbourhood, bringing nature, art and literature together in the same place.</p>
+      </div>
+      <a class="source-link" href="https://fuencalientedelapalma.es/2026/08/07/fuencaliente-inaugura-el-nuevo-mirador-de-las-indias-un-nuevo-referente-paisajistico-y-cultural/" target="_blank" rel="noopener noreferrer">Institutional information about the opening ↗</a>
+    </section>
+    <section class="section">
+      <div class="section-label">Location</div>
+      <p class="location">Las Indias viewpoint, La Fajana · Fuencaliente de La Palma</p>
+      <iframe class="map" src="https://www.openstreetmap.org/export/embed.html?bbox=-17.8602%2C28.4954%2C-17.8476%2C28.5033&layer=mapnik&marker=28.499342%2C-17.8538954" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      <a class="maps-btn" href="https://www.google.com/maps?q=28.499342,-17.8538954" target="_blank" rel="noopener noreferrer">⌖ Open in Google Maps</a>
+    </section>
+    <section class="section tint">
+      <div class="section-label">The artist</div>
+      <div class="artist-head">
+        <div class="artist-photo"><img src="../../img/gustavo.jpg" alt="Gustavo Díaz"></div>
+        <div><div class="artist-name">Gustavo Díaz</div><div class="artist-role">Recycling artist · Environmental activist · Waste manager</div></div>
+      </div>
+      <div class="description">
+        <p>Born in Fuencaliente, La Palma, Gustavo Díaz develops projects under the Herrumbre Vivo brand combining art, sustainability, cultural identity and civic participation. He transforms discarded materials into sculptures and installations that highlight the traditions and heritage of the Canary Islands.</p>
+      </div>
+    </section>
+  </main>
+
+  <!-- DEUTSCH -->
+  <main class="lang-panel" id="lang-de">
+    <section class="section">
+      <div class="section-label">Über das Kunstwerk</div>
+      <div class="description">
+        <p>Am Aussichtspunkt Las Indias, oberhalb der Ortsteile Las Indias und La Fajana, verbindet <strong>El Cuervo</strong> die Landschaft mit dem landwirtschaftlichen Gedächtnis Fuencalientes. Gustavo Díaz, der unter dem Namen Herrumbre Vivo arbeitet, verwendet Rebscheren, Rebholz und landwirtschaftliche Werkzeuge, um vom Weinbau, von der Arbeit auf dem Land und vom Wissen zu erzählen, das von Generation zu Generation weitergegeben wird.</p>
+        <p>Die Vogelfigur lenkt den Blick auf das Gebiet und verstärkt die Verbindung zwischen Natur und menschlicher Tätigkeit. Das wiederverwendete Metall bewahrt sichtbare Spuren seiner früheren Nutzung.</p>
+      </div>
+    </section>
+    <section class="section tint">
+      <div class="section-label">Aussichtspunkt Las Indias</div>
+      <div class="description">
+        <p>Der Aussichtspunkt wurde am <strong>7. August 2026</strong> als neuer landschaftlicher und kultureller Raum der Gemeinde eröffnet. Von hier aus reicht der Blick über die Küste, Bananenplantagen und den Süden La Palmas; bei geeigneten Bedingungen ist auch El Hierro zu sehen.</p>
+        <p>Neben der Skulptur von Gustavo Díaz ist eine Décima von <strong>Miguel Martín Méndez</strong> integriert. So treffen Natur, Kunst und Literatur an einem Ort zusammen.</p>
+      </div>
+      <a class="source-link" href="https://fuencalientedelapalma.es/2026/08/07/fuencaliente-inaugura-el-nuevo-mirador-de-las-indias-un-nuevo-referente-paisajistico-y-cultural/" target="_blank" rel="noopener noreferrer">Institutionelle Informationen zur Eröffnung ↗</a>
+    </section>
+    <section class="section">
+      <div class="section-label">Standort</div>
+      <p class="location">Aussichtspunkt Las Indias, La Fajana · Fuencaliente de La Palma</p>
+      <iframe class="map" src="https://www.openstreetmap.org/export/embed.html?bbox=-17.8602%2C28.4954%2C-17.8476%2C28.5033&layer=mapnik&marker=28.499342%2C-17.8538954" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      <a class="maps-btn" href="https://www.google.com/maps?q=28.499342,-17.8538954" target="_blank" rel="noopener noreferrer">⌖ In Google Maps öffnen</a>
+    </section>
+    <section class="section tint">
+      <div class="section-label">Der Künstler</div>
+      <div class="artist-head">
+        <div class="artist-photo"><img src="../../img/gustavo.jpg" alt="Gustavo Díaz"></div>
+        <div><div class="artist-name">Gustavo Díaz</div><div class="artist-role">Recycling-Künstler · Umweltaktivist · Abfallmanager</div></div>
+      </div>
+      <div class="description"><p>Gustavo Díaz stammt aus Fuencaliente auf La Palma. Unter der Marke Herrumbre Vivo verbindet er Kunst, Nachhaltigkeit, kulturelle Identität und Bürgerbeteiligung und verwandelt ausrangierte Materialien in Skulpturen und Installationen.</p></div>
+    </section>
+  </main>
+
+  <!-- FRANÇAIS -->
+  <main class="lang-panel" id="lang-fr">
+    <section class="section">
+      <div class="section-label">À propos de l'œuvre</div>
+      <div class="description">
+        <p>Au belvédère de Las Indias, au-dessus des quartiers de Las Indias et de La Fajana, <strong>El Cuervo</strong> relie le paysage à la mémoire agricole de Fuencaliente. Gustavo Díaz, sous la marque Herrumbre Vivo, utilise sécateurs, bois de vigne et outils agricoles pour évoquer la viticulture, le travail de la terre et les savoirs transmis de génération en génération.</p>
+        <p>La figure de l'oiseau dirige le regard vers le territoire et renforce le lien entre la nature et l'activité humaine. Le métal récupéré conserve les traces visibles de son usage antérieur.</p>
+      </div>
+    </section>
+    <section class="section tint">
+      <div class="section-label">Belvédère de Las Indias</div>
+      <div class="description">
+        <p>Le belvédère a été inauguré le <strong>7 août 2026</strong> comme nouvel espace paysager et culturel de la commune. Il offre des vues sur le littoral, les bananeraies et le sud de La Palma, avec l'île d'El Hierro visible lorsque les conditions le permettent.</p>
+        <p>Le site associe paysage et culture. À côté de la sculpture de Gustavo Díaz se trouve une décima de <strong>Miguel Martín Méndez</strong>, originaire du quartier de Las Indias, réunissant nature, art et littérature dans un même lieu.</p>
+      </div>
+      <a class="source-link" href="https://fuencalientedelapalma.es/2026/08/07/fuencaliente-inaugura-el-nuevo-mirador-de-las-indias-un-nuevo-referente-paisajistico-y-cultural/" target="_blank" rel="noopener noreferrer">Informations institutionnelles sur l'inauguration ↗</a>
+    </section>
+    <section class="section">
+      <div class="section-label">Localisation</div>
+      <p class="location">Belvédère de Las Indias, La Fajana · Fuencaliente de La Palma</p>
+      <iframe class="map" src="https://www.openstreetmap.org/export/embed.html?bbox=-17.8602%2C28.4954%2C-17.8476%2C28.5033&layer=mapnik&marker=28.499342%2C-17.8538954" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      <a class="maps-btn" href="https://www.google.com/maps?q=28.499342,-17.8538954" target="_blank" rel="noopener noreferrer">⌖ Ouvrir dans Google Maps</a>
+    </section>
+    <section class="section tint">
+      <div class="section-label">L'artiste</div>
+      <div class="artist-head">
+        <div class="artist-photo"><img src="../../img/gustavo.jpg" alt="Gustavo Díaz"></div>
+        <div><div class="artist-name">Gustavo Díaz</div><div class="artist-role">Artiste du recyclage · Activiste environnemental · Gestionnaire de déchets</div></div>
+      </div>
+      <div class="description"><p>Originaire de Fuencaliente, La Palma, Gustavo Díaz développe sous la marque Herrumbre Vivo des projets qui associent art, durabilité, identité culturelle et participation citoyenne. Il transforme des matériaux usagés en sculptures et installations qui valorisent le patrimoine des îles Canaries.</p></div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="footer-brand" href="https://herrumbrevivoarte.com" target="_blank" rel="noopener noreferrer">Herrumbre Vivo</a>
+    <div class="footer-small">El Cuervo · Mirador de Las Indias · Fuencaliente de La Palma</div>
+    <div class="footer-small">Arte con materiales recuperados · 2026</div>
+  </footer>
+</div>
+
+<script>
+  const buttons = document.querySelectorAll('.lang-btn');
+  const panels = document.querySelectorAll('.lang-panel');
+
+  buttons.forEach(button => {
+    button.addEventListener('click', () => {
+      const lang = button.dataset.lang;
+      buttons.forEach(b => b.classList.remove('active'));
+      panels.forEach(p => p.classList.remove('active'));
+      button.classList.add('active');
+      document.getElementById('lang-' + lang).classList.add('active');
+      document.documentElement.lang = lang;
+    });
+  });
+</script>
+</body>
+</html>
